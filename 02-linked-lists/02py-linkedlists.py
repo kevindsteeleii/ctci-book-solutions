@@ -8,60 +8,57 @@ class Node():
         self.data = d
         self.next = None
 
-    def add_node(self, n:int):
-        self.next = Node(n)
+    def __str__(self):
+        return '({})'.format(str(self.data))
     
-    def __repr__(self):
-        """  
-        Dunder-method that returns the formatted values w/n the singly linked-list
-        """
-        temp = self
+      
+class LinkedList():
+    def __init__(self):
+        self.head = None
+
+    def serial_append(self, d_list):
+        '''
+        Takes a list of ints and adds them to the linked-list in order of sequence 0 -> n/2 -> n  
+        :param d_list: list of data to be added as Nodes to linked list
+        '''
+        for i in range(len(d_list)):
+            data = d_list[i]
+            self.append_tail(data)
+
+
+    def append_tail(self, d):
+        node = Node(d)
+        if self.head:
+            temp = self.head
+            while temp is not None:
+                if temp.next is None:
+                    temp.next = node
+                    return
+                temp = temp.next
+        else:
+            self.head = node
+        
+
+    def __str__(self):
+        temp = self.head
         s = ''
-        while temp != None:
-            s += '{} -> '.format(str(temp.data)) if temp.next is not None else str(temp.data)
+        while temp:
+            s += '({}) -> '.format(str(temp.data)) if temp.next is not None else '({}) -> x'.format(str(temp.data))
             temp = temp.next
         return s
 
-
-"""  
-    Some node "library" stuff
-"""
-
-def delete_node(head: Node, d: int):
-    """  
-        As the name implies, this takes the "head" node and runs a two-pointer op to find and delete the target based on data value by tying together it's before and after, if the target remains undiscovered, it does nothing (just returns) and runs 
-        :param head: type Node, the head of a singly linked-list
-        :param d: the value of the node to be "deleted"
-    """
-    temp = head # assign thru reference 
-    slow_pt, fast_pt = head, head.next # pointers
-    cycles = 0 # do I need cycles?
-    while temp != None:
-        if temp.data != d:
-            temp = temp.next
-            fast_pt = fast_pt.next
-            slow_pt = slow_pt.next if cycles > 0 else slow_pt
-        else:
-            slow_pt.next = fast_pt
-        cycles += 1 if cycles < 1 else 1
-    return head
-
-
-def LinkChain(d_list):
-    pass
-
-            
-            
-
-
-        
-
     
 def main():
-    node = Node(2)
-    print(node)
-    node.add_node(4)
-    print(node)
+    n = Node(5)
+    print(n)
+    linky1 = LinkedList()
+    linky1.head = n
+    print(linky1)
+    linky1.append_tail(6)
+    print(linky1)
+    arr = [1, 2, 3, 4]
+    linky1.serial_append(arr)
+    print(linky1)
 
 
 if __name__ == '__main__':
