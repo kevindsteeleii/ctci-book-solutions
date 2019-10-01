@@ -4,7 +4,7 @@ This meager repository is for the express purpose of sharpening those skills tha
 ## Subjects Covered:
 These are the subjects covered by the CTCI or **Cracking the Coding Interview**, this listing will expand into relative links later as more of the subject matter is covered w/ additional notes and pointers
 - [ ] [Arrays and Strings](./01arrays-strings)
-- [ ] Linked Lists
+- [ ] [Linked Lists](./02-linked-lists)
 - [ ] Stacks and Queues
 - [ ] Trees and Graphs
 - [ ] Bit Manipulation
