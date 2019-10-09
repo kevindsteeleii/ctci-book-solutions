@@ -24,6 +24,26 @@ class LinkedList():
         for i in range(len(d_list)):
             data = d_list[i]
             self.append_tail(data)
+        
+    def delete_mid(self, t_data):
+        """  
+        Method that takes a target Node's data value and removes its corresponding Node, if it exists and is not the head nor tail of the Node.
+        :param t_data: target Node's data value
+        """
+        if self.head is None:
+            return
+        else:
+            temp = self.head.next
+            prev = self.head
+            while temp is not None:
+                if temp.data == t_data:
+                    t = temp
+                    temp = temp.next
+                    prev.next = temp
+                    t.next = None
+                temp = temp.next
+                prev = prev.next
+            return
 
 
     def append_tail(self, d):
@@ -58,6 +78,8 @@ def main():
     print(linky1)
     arr = [1, 2, 3, 4]
     linky1.serial_append(arr)
+    print(linky1)
+    linky1.delete_mid(2)
     print(linky1)
 
 
