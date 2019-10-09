@@ -1,11 +1,10 @@
 /*  
   Binary MinHeap Implementation
-            0
-       /       \ 
-      1        2
-    /   \    /   \
-   3     4  5     6
-
+                     0
+                 /      \ 
+                1        2
+              /   \    /   \
+            3     4  5     6                   
 */
 class MinHeap {
   constructor() {
@@ -21,49 +20,36 @@ class MinHeap {
     return this.heap[0];
   }
 
-  getLeftChild(idx){
-    if (idx == 0) {
-      return 1;
+  pop() {
+    let length = this.heap.length;
+    let top;
+    if (length < 1) {
+      throw new RangeError('Error: No entries in heap, insert data.');
+    } else if (length === 1) {
+      top = this.heap.pop();
+      return top;
     } else {
-      let level = Math.floor(Math.log2(idx + 1));
-      // let offset = idx - 
-      let childIdx = idx + 2**level + offset;
+      let last = this.heap[length - 1];
+
     }
   }
 
+
+  getLeftChild(idx){
+    return 2 * idx + 1;
+  }
+
+  getRightChild(idx){
+    return 2 * idx + 2;
+  }
+
   heapify() {
-    if(this.isEmpty()) {
+    let length = this.heap.length;
+    if(this.isEmpty() || length === 1) {
       return
     } else {
-      if (this.heap.length === 1) {
-        return
-      } else {
-        // let idx = this.heap.length - 1;
-        // let val = this.heap[idx];
-
-        // while (val && idx > 0) {
-        //   let level = Math.floor(Math.log2(idx+1));
-        //   // REFACTOR any var with "p" prefix is parent_
-        //   let pDiff = Math.floor(Math.log2(idx + 1)) - 2**level;
-        //   if (level <= 1) {
-
-        }
-
-        }
-      }
-        
-    // }
-      // let idx = this.heap.length - 1;
-      // let val = this.heap[idx];
-      // let level = Math.floor(Math.log2(idx + 1));
-      // let parentLevel = level - 1;
-      // let diff = Math.floor(((idx + 1) - 2**level)/2);
-      // let parentIdx = 2**(parentLevel- 1) + diff; 
-      /* NOTE use the level before the parent level, 
-      CAUTION it only works with heaps that have a height of 2 or more... */
-    // }
-    // END of class
-  // }
+    }
+  }
 
   insert(data){
     this.heap.push(data)
