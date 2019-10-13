@@ -18,11 +18,12 @@ class SetOfStacks {
   }
 
   _isValid(el) {
-    if (typeof(el) !== 'number' || !Number.isInteger(el) || Number.isNaN(el) || el < 0) {
+    if (typeof(el) !== 'number' || Number.isNaN(el)) {
       return false;
     }
     return true;
   }
+
 
   _overCapacity() {
     return this._cap === this._stacks[this._curr].length;
@@ -49,7 +50,15 @@ class SetOfStacks {
   }
   /* FOLLOW UP Implement a function popAt ( int index) which performs a pop operation on a specific sub-stack. */
   popAt(stack) {
-    
+    if (this.length < stack  || stack > this.length) {
+      return
+    } else {
+      let temp = this._stacks[stack - 1].pop();
+      if (this._stacks[stack - 1].length === 0) {
+        this._curr --;
+      }
+      return temp;
+    }
   }
   
 }
@@ -59,15 +68,3 @@ const Stacks = new SetOfStacks();
 for(let i = 0; i < 6; i++) {
   Stacks.push(i);
 }
-
-console.log(Stacks);
-console.log(Stacks.pop());
-console.log(Stacks.pop());
-console.log(Stacks.pop());
-console.log(Stacks.pop());
-console.log(Stacks.pop());
-console.log(Stacks.pop());
-
-
-console.log(Stacks);
-
